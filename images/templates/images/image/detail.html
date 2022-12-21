@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% extends "account/base.html" %}
+{% block title %}{{image.title}}{% endblock %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>{{image.title}}</h2>
+<img src="{{image.image.url}}" class="image-detail">
+{% with total_likes=image.users_like.count %}
+
+<div class="image-info">
+    <div>
+        <span class="count">
+            {{total_likes}}like{{total_likes|pluralize}}
+        </span>
+    </div>
+    {{image.description|linebreaks}}
+</div>
+
+<div class="image-likes">
+    {% for user in image.users_like.all %}
+    <div>
+        {% if user.profile.photo %}
+        <img src="{{user.profile.photo.url}}">
+        {% endif %}
+        <p>{{user.first_name}}</p>
+    </div>
+    {%empty%}
+    No Likes
+    {% endfor %}
+</div>
+{%endwith%}
+</body>
+</html>
+
+{% endblock %}

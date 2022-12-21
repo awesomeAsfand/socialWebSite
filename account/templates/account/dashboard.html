@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+{% extends 'account/base.html' %}
+{% block title %}Log-in{% endblock %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Welcome</h1>
+<p>Welcome to dashboard</p>
+{% with total_images_created=request.user.images_created.count %}
+<p>You have bookmarked {{ total_images_created }}image{{total_images_created|pluralize}}</p>
+{% endwith %}
+<p>Drag to toolbar to bookmar images <a href="javascript:{%include 'bookmarklet_launcher.js' %}" class="button">BookMark It</a></p>
+
+<p>
+    <a href="{% url 'edit' %}">Edit Profile</a>
+    <a href="{% url 'password_change' %}">Change Password</a>
+</p>
+
+
+</body>
+</html>
+
+{% endblock %}

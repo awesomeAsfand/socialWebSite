@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+{% extends "account/base.html" %}
+{% block title %}Bookmark an image{% endblock %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bookmark an Image</title>
+</head>
+<body>
+<img src="{{request.GET.url}}" class="image-preview">
+<form method="post" action="">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="BookMarkit">
+</form>
+</body>
+</html>
+{% endblock %}
+
